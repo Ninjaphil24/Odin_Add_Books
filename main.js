@@ -50,11 +50,26 @@ console.log(myLibrary)
 //     return entry
 // }
 function printBook() {
-    for(let i=0;i<myLibrary.length;i++) {
-        const card = document.getElementById('card')
+    const card = document.getElementById('card')
+    // for(let i=0;i<myLibrary.length;i++) 
+    for (let i in myLibrary)
+    {
         const div = document.createElement('div')
-        div.textContent = myLibrary[i].title
+        div.textContent = "Title: "+ myLibrary[i].title 
+        const div2 = document.createElement('div')
+        div2.textContent = "Author: "+ myLibrary[i].author 
+        const div3 = document.createElement('div')
+        div3.textContent = "Pages: "+ myLibrary[i].pages
+        const div4 = document.createElement('div')
+        div4.textContent = "Have you read this book: "+ myLibrary[i].read
+        const br = document.createElement('br')
+        
+        myLibrary[i].author
         card.appendChild(div)    
+        card.appendChild(div2)    
+        card.appendChild(div3)    
+        card.appendChild(div4)    
+        card.appendChild(br)    
     }
 }
 
