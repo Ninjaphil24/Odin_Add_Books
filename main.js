@@ -50,15 +50,30 @@ console.log(myLibrary)
 //     return entry
 // }
 function printBook() {
-    for (let i=0;i<myLibrary.length;i++) {
-        document.getElementById('card').innerHTML = '<div class="entry">Title: ' + myLibrary[i].title + '</div>'
-        // document.getElementById('author').innerText = "Author: " + myLibrary[i].author
-        // document.getElementById('pageNumber').innerText = "Number of pages: " + myLibrary[i].pages
-        // document.getElementById('read').innerText = "Have you read this book: " + myLibrary[i].read
+    for(let i=0;i<myLibrary.length;i++) {
+        const card = document.getElementById('card')
+        const div = document.createElement('div')
+        div.textContent = myLibrary[i].title
+        card.appendChild(div)    
     }
 }
 
 printBook()
+
+
+const output = document.getElementById('output');
+const borderDiv = document.createElement('div');
+const elemH1 = document.createElement('h1');
+const me2p = document.createElement('p');
+output.appendChild(borderDiv)
+borderDiv.setAttribute('style','border: 1px solid black; background: pink;')
+
+elemH1.textContent = "I'm in a div";
+me2p.textContent = "ME TOO!";
+
+borderDiv.appendChild(elemH1);
+borderDiv.appendChild(me2p);
+
 
             
             // <div class="entry" id="author"></div>
