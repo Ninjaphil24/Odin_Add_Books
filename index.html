@@ -9,15 +9,15 @@
 </head>
 <body>
     <h1>Add a Book to the list</h1>
-    <form class="submit-form">
+    <form class="submit-form" enctype="multipart/form-data">
         <label>Title</label>
         <input class="input" id="title-input" type="text" name="title" />
         <label>Author</label>
         <input class="input" id="author-input" type="text" name="author" />
         <label>Pages</label>
         <input class="input" id="pages-input" type="text" name="pages" />
+        <label>Have you read this book?</label>
         <select class="form-control" id="readYN-input" name="readYN">
-            <label>Have you read this book?</label>
             <option value="Yes">Yes</option>
             <option value="No">No</option>
         </select>
@@ -25,20 +25,11 @@
     </form>
     
     <section>
-        <div class="card">
-            <div class="entry title">Title: Moby Dick</div>
-            <div class="entry author">Author: Ernest Hemmingway</div>
-            <div class="entry pageNumber">Pages: 150</div>
-            <div class="entry read">Has it been read: No</div>
-        </div>
-        <div class="card">
-            <div class="entry title">Title: Moby Dick</div>
-            <div class="entry author">Author: Ernest Hemmingway</div>
-            <div class="entry pageNumber">Pages: 150</div>
-            <div class="entry read">Has it been read: No</div>
+        <div id="card">
+            
         </div>
     </section>
-
+    <div id="output"></div>
 
 <script src="main.js"></script>
 </body>

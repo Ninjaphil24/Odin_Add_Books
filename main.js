@@ -1,21 +1,4 @@
-if (document.readyState == 'loading') {
-	document.addEventListener('DOMContentLoaded', ready)
-} else {
-	ready()
-}
-
-function ready() {
-	var title = new URL(window.location).searchParams.get('title')
-	document.getElementById('title-input').value = title
-	var author = new URL(window.location).searchParams.get('author')
-	document.getElementById('author-input').value = author
-	var pages = new URL(window.location).searchParams.get('pages')
-	document.getElementById('pages-input').value = pages
-	var readYN = new URL(window.location).searchParams.get('readYN')
-	document.getElementById('readYN-input').value = readYN
-}
-// document.getElementById('query-output').innerHTML = query
-
+let myLibrary = [];
 
 function Book(title,author,pages,read) {
     this.title=title;
@@ -27,16 +10,57 @@ function Book(title,author,pages,read) {
     }
 }
 
-const hobbit = new Book('The Hobbit','Tolkien','295','not read')
-console.log(hobbit.info())
+const title = "Potter"
+const author = "Rowling"
+const pages = 399
+const read = "Yes"
+const title1 = "Moby Dick"
+const author1 = "Melville"
+const pages1 = 250
+const read1 = "No"
 
 
-let myLibrary = [];
 
-function Book() {
-  // the constructor...
+function addBookToLibrary(title,author,pages,read) {
+    // do stuff here
+    myLibrary.push(new Book(title,author,pages,read))
+    return myLibrary
 }
 
-function addBookToLibrary() {
-  // do stuff here
+console.log(addBookToLibrary(title,author,pages,read))
+console.log(addBookToLibrary(title1,author1,pages1,read1))
+console.log(myLibrary)
+
+// if (document.readyState == 'loading') {
+// 	document.addEventListener('DOMContentLoaded', ready)
+// } else {
+// 	ready()
+// }
+
+// function ready() {
+// 	var title = new URL(window.location).searchParams.get('title')
+// 	document.getElementById('title-input').value = title
+// 	var author = new URL(window.location).searchParams.get('author')
+// 	document.getElementById('author-input').value = author
+// 	var pages = new URL(window.location).searchParams.get('pages')
+// 	document.getElementById('pages-input').value = pages
+// 	var readYN = new URL(window.location).searchParams.get('readYN')
+// 	document.getElementById('readYN-input').value = readYN
+//     const entry = new Book(title,author,pages,readYN)
+//     return entry
+// }
+function printBook() {
+    for (let i=0;i<myLibrary.length;i++) {
+        document.getElementById('card').innerHTML = '<div class="entry">Title: ' + myLibrary[i].title + '</div>'
+        // document.getElementById('author').innerText = "Author: " + myLibrary[i].author
+        // document.getElementById('pageNumber').innerText = "Number of pages: " + myLibrary[i].pages
+        // document.getElementById('read').innerText = "Have you read this book: " + myLibrary[i].read
+    }
 }
+
+printBook()
+
+            
+            // <div class="entry" id="author"></div>
+            // <div class="entry" id="pageNumber"></div>
+            // <div class="entry" id="read"></div>
