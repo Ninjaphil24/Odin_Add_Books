@@ -10,46 +10,50 @@ function Book(title,author,pages,read) {
     }
 }
 
-const title = "Potter"
-const author = "Rowling"
-const pages = 399
-const read = "Yes"
-const title1 = "Moby Dick"
-const author1 = "Melville"
-const pages1 = 250
-const read1 = "No"
+// const title = "Potter"
+// const author = "Rowling"
+// const pages = 399
+// const read = "Yes"
+// const title1 = "Moby Dick"
+// const author1 = "Melville"
+// const pages1 = 250
+// const read1 = "No"
 
 
 
-function addBookToLibrary(title,author,pages,read) {
+
+// console.log(addBookToLibrary(title,author,pages,read))
+// console.log(addBookToLibrary(title1,author1,pages1,read1))
+// console.log(myLibrary)
+
+if (document.readyState == 'loading') {
+    document.addEventListener('DOMContentLoaded', ready)
+} else {
+    ready()
+}
+
+
+function ready() {
+    var title = new URL(window.location).searchParams.get('title')
+	document.getElementById('title-input').value = title
+	var author = new URL(window.location).searchParams.get('author')
+	document.getElementById('author-input').value = author
+	var pages = new URL(window.location).searchParams.get('pages')
+	document.getElementById('pages-input').value = pages
+	var readYN = new URL(window.location).searchParams.get('readYN')
+	document.getElementById('readYN-input').value = readYN
+    const entry = new Book(title,author,pages,readYN)
+    return entry
+}
+
+function addBookToLibrary() {
     // do stuff here
-    myLibrary.push(new Book(title,author,pages,read))
+    myLibrary.push(ready())
     return myLibrary
 }
 
-console.log(addBookToLibrary(title,author,pages,read))
-console.log(addBookToLibrary(title1,author1,pages1,read1))
-console.log(myLibrary)
-
-// if (document.readyState == 'loading') {
-// 	document.addEventListener('DOMContentLoaded', ready)
-// } else {
-// 	ready()
-// }
-
-// function ready() {
-// 	var title = new URL(window.location).searchParams.get('title')
-// 	document.getElementById('title-input').value = title
-// 	var author = new URL(window.location).searchParams.get('author')
-// 	document.getElementById('author-input').value = author
-// 	var pages = new URL(window.location).searchParams.get('pages')
-// 	document.getElementById('pages-input').value = pages
-// 	var readYN = new URL(window.location).searchParams.get('readYN')
-// 	document.getElementById('readYN-input').value = readYN
-//     const entry = new Book(title,author,pages,readYN)
-//     return entry
-// }
 function printBook() {
+    addBookToLibrary()
     const card = document.getElementById('card')
     // for(let i=0;i<myLibrary.length;i++) 
     for (let i in myLibrary)
@@ -76,18 +80,18 @@ function printBook() {
 printBook()
 
 
-const output = document.getElementById('output');
-const borderDiv = document.createElement('div');
-const elemH1 = document.createElement('h1');
-const me2p = document.createElement('p');
-output.appendChild(borderDiv)
-borderDiv.setAttribute('style','border: 1px solid black; background: pink;')
+// const output = document.getElementById('output');
+// const borderDiv = document.createElement('div');
+// const elemH1 = document.createElement('h1');
+// const me2p = document.createElement('p');
+// output.appendChild(borderDiv)
+// borderDiv.setAttribute('style','border: 1px solid black; background: pink;')
 
-elemH1.textContent = "I'm in a div";
-me2p.textContent = "ME TOO!";
+// elemH1.textContent = "I'm in a div";
+// me2p.textContent = "ME TOO!";
 
-borderDiv.appendChild(elemH1);
-borderDiv.appendChild(me2p);
+// borderDiv.appendChild(elemH1);
+// borderDiv.appendChild(me2p);
 
 
             
