@@ -1,10 +1,17 @@
-let myLibrary = []
+let myLibrary = [
+    {
+        title: "Harry Potter",
+        author: "J.K Rowling",
+        pages: 111,
+        read: "Yes"
+    }    
+]
 let inpTitle = document.getElementById('title-input')
 let inpAuthor = document.getElementById('author-input')
 let inpPages = document.getElementById('pages-input')
 let inpReadYN = document.getElementById('readYN-input')
 let insertBtn = document.getElementById('insert')
-let Books = localStorage.key(0)
+let outputUl = document.getElementById('output')
 
 function Book(title,author,pages,read) {
     this.title=title;
@@ -13,52 +20,30 @@ function Book(title,author,pages,read) {
     this.read=read;
 }
 
-insertBtn.addEventListener('click', insert)
 
-let libraryParser = () => {
-    // let parsed = JSON.parse(localStorage.getItem(Books))
-    if(localStorage.getItem(Books))myLibrary.push(localStorage.getItem(Books))
-    else return null
+const addBookToLibrary = () => {
+    let title = inpTitle.value;
+    let author = inpAuthor.value;
+    let pages = inpPages.value;
+    let read = inpReadYN;
+    let newBook = new Book(title, author, pages, read);
+    myLibrary.push(newBook);
 }
 
-libraryParser()
-function insert() {
-    let title = inpTitle.value
-    let author = inpAuthor.value
-    let pages = inpPages.value
-    let read = inpReadYN.value
-    let newBook = new Book(title,author,pages,read)
-    myLibrary.push(newBook)
-    storeLocally()
-    location.reload()      
+insertBtn.addEventListener('click', addBookToLibrary)
+
+const outputAll = (myLibrary) => {
+    const outputTitle = document.createElement('li')
+    outputTitle.innerText = myLibrary.title
+    const outputAuthor = document.createElement('li')
+    outputAuthor.innerText = myLibrary.author
+    const outputPages = document.createElement('li')
+    outputPages.innerText = myLibrary.pages
+    const outputRead = document.createElement('li')
+    outputRead.innerText = myLibrary.read
+
+    outputUl.append(outputTitle, outputAuthor, outputPages, outputRead)    
 }
 
-function storeLocally() {
-    localStorage.setItem("Books", JSON.stringify(myLibrary))  
-}
+myLibrary.forEach(outputAll)
 
-function printBook() {
-    let card = document.getElementById('card')
-    // for(let i=0;i<myLibrary.length;i++) 
-    for (let i in myLibrary)
-    {
-        let div = document.createElement('div')
-        div.textContent = "Title: "+ myLibrary[i].title 
-        let div2 = document.createElement('div')
-        div2.textContent = "Author: "+ myLibrary[i].author 
-        let div3 = document.createElement('div')
-        div3.textContent = "Pages: "+ myLibrary[i].pages
-        let div4 = document.createElement('div')
-        div4.textContent = "Have you read this book: "+ myLibrary[i].read
-        let br = document.createElement('br')
-        
-        myLibrary[i].author
-        card.appendChild(div)    
-        card.appendChild(div2)    
-        card.appendChild(div3)    
-        card.appendChild(div4)    
-        card.appendChild(br)    
-    }
-}
-
-printBook()
