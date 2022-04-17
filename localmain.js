@@ -1,16 +1,22 @@
 let myLibrary = [
-    {
-        title: "Harry Potter",
-        author: "J.K Rowling",
-        pages: 111,
-        read: "Yes"
-    }    
+    // {
+    //     title: "Harry Potter",
+    //     author: "J.K Rowling",
+    //     pages: 111,
+    //     read: "Yes"
+    // },
+    // {
+    //     title: "Harry Potter",
+    //     author: "J.K Rowling",
+    //     pages: 111,
+    //     read: "Yes"
+    // }    
 ]
 let inpTitle = document.getElementById('title-input')
 let inpAuthor = document.getElementById('author-input')
 let inpPages = document.getElementById('pages-input')
 let inpReadYN = document.getElementById('readYN-input')
-let insertBtn = document.getElementById('insert')
+const insertBtn = document.getElementById('form')
 let outputUl = document.getElementById('output')
 
 function Book(title,author,pages,read) {
@@ -30,20 +36,39 @@ const addBookToLibrary = () => {
     myLibrary.push(newBook);
 }
 
-insertBtn.addEventListener('click', addBookToLibrary)
+// insertBtn.addEventListener('click', addBookToLibrary)
 
-const outputAll = (myLibrary) => {
+const outputAll = () => {
     const outputTitle = document.createElement('li')
-    outputTitle.innerText = myLibrary.title
+    outputTitle.innerText = "Title: "+ myLibrary.title
     const outputAuthor = document.createElement('li')
-    outputAuthor.innerText = myLibrary.author
+    outputAuthor.innerText = "Author: "+myLibrary.author
     const outputPages = document.createElement('li')
-    outputPages.innerText = myLibrary.pages
+    outputPages.innerText = "Pages: "+myLibrary.pages
     const outputRead = document.createElement('li')
-    outputRead.innerText = myLibrary.read
+    outputRead.innerHTML = "Read: "+myLibrary.read+"<br><br>"
 
-    outputUl.append(outputTitle, outputAuthor, outputPages, outputRead)    
+    outputUl.append(outputTitle, outputAuthor, outputPages, outputRead)        
 }
 
 myLibrary.forEach(outputAll)
+
+insertBtn.onsubmit = (e) => {
+    e.preventDefault();
+    alert('click')
+    // const newBook = addBookToLibrary(
+    //     inpTitle.value,
+    //     inpAuthor.value,
+    //     inpPages.value,
+    //     inpReadYN.value
+    // );
+
+    // outputAll(newBook)
+    //     inpTitle.value = "";
+    //     inpAuthor.value = "";
+    //     inpPages.value = "";
+    //     inpReadYN.value = "";
+    };
+
+
 
