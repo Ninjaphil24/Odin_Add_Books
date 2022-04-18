@@ -1,52 +1,36 @@
-let myLibrary = [
-    // {
-    //     title: "Harry Potter",
-    //     author: "J.K Rowling",
-    //     pages: 111,
-    //     read: "Yes"
-    // },
-    // {
-    //     title: "Harry Potter",
-    //     author: "J.K Rowling",
-    //     pages: 111,
-    //     read: "Yes"
-    // }    
-]
-let inpTitle = document.getElementById('title-input')
-let inpAuthor = document.getElementById('author-input')
-let inpPages = document.getElementById('pages-input')
-let inpReadYN = document.getElementById('readYN-input')
+
+const inpTitle = document.getElementById('title-input')
+const inpAuthor = document.getElementById('author-input')
+const inpPages = document.getElementById('pages-input')
+const inpReadYN = document.getElementById('readYN-input')
 const insertBtn = document.getElementById('form')
-let outputUl = document.getElementById('output')
+const outputUl = document.getElementById('output')
 
-function Book(title,author,pages,read) {
-    this.title=title;
-    this.author=author;
-    this.pages=pages;
-    this.read=read;
-}
+const myLibrary = JSON.parse(localStorage.getItem("Books"))|| [];
 
 
-const addBookToLibrary = () => {
-    let title = inpTitle.value;
-    let author = inpAuthor.value;
-    let pages = inpPages.value;
-    let read = inpReadYN;
-    let newBook = new Book(title, author, pages, read);
-    myLibrary.push(newBook);
+const addBookToLibrary = (title,author,pages,read) => {
+    myLibrary.push({
+        title,
+        author,
+        pages,
+        read
+    });
+    localStorage.setItem("Books", JSON.stringify(myLibrary))
+    return { title,author,pages,read }
 }
 
 // insertBtn.addEventListener('click', addBookToLibrary)
 
-const outputAll = () => {
+const outputAll = ({title, author, pages, read}) => {
     const outputTitle = document.createElement('li')
-    outputTitle.innerText = "Title: "+ myLibrary.title
+    outputTitle.innerText = "Title: "+ title
     const outputAuthor = document.createElement('li')
-    outputAuthor.innerText = "Author: "+myLibrary.author
+    outputAuthor.innerText = "Author: "+author
     const outputPages = document.createElement('li')
-    outputPages.innerText = "Pages: "+myLibrary.pages
+    outputPages.innerText = "Pages: "+pages
     const outputRead = document.createElement('li')
-    outputRead.innerHTML = "Read: "+myLibrary.read+"<br><br>"
+    outputRead.innerHTML = "Read: "+read+"<br><br>"
 
     outputUl.append(outputTitle, outputAuthor, outputPages, outputRead)        
 }
@@ -55,19 +39,18 @@ myLibrary.forEach(outputAll)
 
 insertBtn.onsubmit = (e) => {
     e.preventDefault();
-    alert('click')
-    // const newBook = addBookToLibrary(
-    //     inpTitle.value,
-    //     inpAuthor.value,
-    //     inpPages.value,
-    //     inpReadYN.value
-    // );
+    const newBook = addBookToLibrary(
+        inpTitle.value,
+        inpAuthor.value,
+        inpPages.value,
+        inpReadYN.value
+    );
 
-    // outputAll(newBook)
-    //     inpTitle.value = "";
-    //     inpAuthor.value = "";
-    //     inpPages.value = "";
-    //     inpReadYN.value = "";
+    outputAll(newBook)
+        inpTitle.value = "";
+        inpAuthor.value = "";
+        inpPages.value = "";
+        inpReadYN.value = "";
     };
 
 
